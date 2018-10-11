@@ -36,12 +36,14 @@ public class FlightController {
 		flight.setPilot(pilot);
 
 		model.addAttribute("flight", flight);
+		model.addAttribute("title", "Add Flight");
 		return "addFlight";
 	}
 	
 	@RequestMapping(value = "/flight/add", method = RequestMethod.POST)
-	private String addFlightSubmit(@ModelAttribute FlightModel flight) {
+	private String addFlightSubmit(@ModelAttribute FlightModel flight, Model model) {
 		flightService.addFlight(flight);
+		model.addAttribute("title", "Add Flight");
 		return "add";
 	}
 	
@@ -50,7 +52,16 @@ public class FlightController {
 		for(FlightModel flight : pilot.getPilotFlight()) {
 			flightService.deleteFlightById(flight.getId());
 		}
+		model.addAttribute("title", "Delete");
 		return "delete";
 	}
+	
+	@RequestMapping(value = "/flight/viewAll", method = RequestMethod.GET)
+	public String viewAllPilot(Model model) {
+		List<FlightModel> listFlight = flightService.viewAllFlight();
+		model.addAttribute("semuaFlight", listFlight);
+		model.addAttribute("title", "View All");
+		return "viewall-flight";
+	 }
 	
 }

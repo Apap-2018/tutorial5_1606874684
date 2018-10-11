@@ -8,13 +8,13 @@
 </head>
 <body>
 	<nav th:replace="fragments/fragment :: navbar"></nav>
-	<h1>Daftar Semua Pilot</h1>
+	<h1>Daftar Semua Penerbangan</h1>
 	<br>
-	<div th:each="pilot : ${semuaPilot}">
-	<h4 th:text="'ID : ' + ${pilot.id}"></h4>
-	<h4 th:text="'License Number : ' + ${pilot.licenseNumber}"></h4>
-	<h4 th:text="'Name : ' + ${pilot.name}"></h4>
-	<h4 th:text="'FlyHour : ' + ${pilot.flyHour}"></h4>
+	<div th:each="flight : ${semuaFlight}">
+	<h4 th:text="'ID : ' + ${flight.id}"></h4>
+	<h4 th:text="'Flight Number : ' + ${flight.flightNumber}"></h4>
+	<h4 th:text="'Pilot Name : ' + ${flight.pilot.name}"></h4>
+	<h4 th:text="'Pilot License Number : ' + ${flight.pilot.licenseNumber}"></h4>
 	<br>
 	</div>
 	</body>
